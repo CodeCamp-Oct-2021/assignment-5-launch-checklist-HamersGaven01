@@ -48,15 +48,16 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let lStatus = document.getElementById("launchStatus")
     if(validateInput(pilot.value) === "Empty" || validateInput(copilot.value) === "Empty" || validateInput(fuelLevel.value) === "Empty" || validateInput(cargoLevel.value) === "Empty"){
         window.alert("Please enter all information")
+        list.style.visibility="hidden";
         event.preventDefault()    
         console.log("reached validate input")
     }else if((validateInput(pilot.value) !== "Not a Number") || (validateInput(copilot.value) !== "Not a Number")){
         window.alert("Invalid input detected! Please try again!")
         console.log("reached pilot validation - strings")
-        
+        list.style.visibility="hidden";
         
     }else {
-            // list.style.visibility="visible"
+            list.style.visibility="hidden";
             document.getElementById("pilotStatus").innerHTML=`Pilot ${pilot.value} is ready for launch`;
             document.getElementById("copilotStatus").innerHTML=`Co-pilot ${copilot.value} is ready for launch`;
             console.log("changed pilots names")
@@ -84,7 +85,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             lStatus.style.color="red";
             lStatus.innerHTML="Shuttle Not Ready for Launch";
     }else if(cargoLevel.value < 10000 && fuelLevel.value > 10000){
-            // list.style.visibility="hidden";
+            list.style.visibility="hidden";
             document.getElementById("cargoStatus").innerHTML="Cargo mass low enough for launch"
             lStatus.style.color="green";
             lStatus.innerHTML="Shuttle Ready for Launch";

@@ -1,5 +1,5 @@
 // Write your JavaScript code here!
-
+document = window.document
 // const { formSubmission } = require("./scriptHelper");
 
 // const { pickPlanet } = require("./scriptHelper");
@@ -22,6 +22,7 @@ window.addEventListener("load", function() {
     let form = window.document.getElementById("launchForm")
     form.addEventListener("submit", function(event){
         console.log("did this hit?")
+        
         let someList = document.getElementById("faultyItems")
         
         let mainPilot = document.getElementById("pilotName")
