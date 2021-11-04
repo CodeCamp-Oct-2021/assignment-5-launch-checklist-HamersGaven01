@@ -32,7 +32,7 @@ window.addEventListener("load", function() {
         let levelCargo = document.getElementById("cargoMass")
         
         event.preventDefault()
-        formSubmission(document, someList, mainPilot.value, otherPilot.value, levelFuel.value, levelCargo.value)
+        formSubmission(document, someList, mainPilot, otherPilot, levelFuel, levelCargo)
     })
 
 });
