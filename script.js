@@ -31,8 +31,9 @@ window.addEventListener("load", function() {
         
         let levelCargo = document.getElementById("cargoMass")
         
-        event.preventDefault()
+        
         formSubmission(document, someList, mainPilot, otherPilot, levelFuel, levelCargo)
+        event.preventDefault()
     })
 
 });

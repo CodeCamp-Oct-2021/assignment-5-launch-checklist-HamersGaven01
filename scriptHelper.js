@@ -41,22 +41,29 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+    list.style.visibility="hidden";
     // let lStatus = document.getElementById("launchStatus")
     if((validateInput(pilot.value) === "Empty") || (validateInput(copilot.value === "Empty")) || (validateInput(fuelLevel.value) === "Empty") || (validateInput(cargoLevel.value) === "Empty")){
         window.alert("Please enter all information")
+        list.style.visibility="hidden";
         
     }
     if((validateInput(pilot.value) === "Is a Number") || (validateInput(copilot.value) === "Is a Number")){
         window.alert("Invalid input detected! Please try again!")
-    } else {document.getElementById("pilotStatus").innerHTML=`Pilot ${pilot} is ready for launch`;
+        list.style.visibility="hidden";
+        
+    } else {
+            list.style.visibility="visible"
+            document.getElementById("pilotStatus").innerHTML=`Pilot ${pilot} is ready for launch`;
             document.getElementById("copilotStatus").innerHTML=`Co-pilot ${copilot} is ready for launch`;
     }
     if(validateInput(fuelLevel.value) !== "Is a Number" || validateInput(cargoLevel.value) !== "Is a Number"){
         window.alert("Please check fields for valid entries!")
+        list.style.visibility="hidden";
     }else {
         if(fuelLevel.value < 10000){
-            document.getElementById("faultyItems").style.visibility="visible";
-            // document.getElementById("fuelStatus").innerHTML="Fuel level too low for launch";
+            // document.getElementById("faultyItems").style.visibility="visible";
+            list.style.visibility="visible";
             document.getElementById("fuelStatus").innerHTML="Fuel level too low for launch";
             document.getElementById("launchStatus").style.color="red";
             document.getElementById("launchStatus").innerHTML="Shuttle not ready for launch";
