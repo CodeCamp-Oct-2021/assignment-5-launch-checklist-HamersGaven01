@@ -14,14 +14,14 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="">
    */
-  document.getElementByID("missionTarget").innerHTML=`
+  document.getElementById("missionTarget").innerHTML=`
     <h2>Mission Destination</h2>
     <ol>
-        <li>${name}</li>
-        <li>${diameter}</li>
-        <li>${star}</li>
-        <li>${distance}</li>
-        <li>${moons}</li>
+        <li>Name :${name}</li>
+        <li>Diameter: ${diameter}</li>
+        <li>Star: ${star}</li>
+        <li>Distance from Earth: ${distance}</li>
+        <li>Number of Moons: ${moons}</li>
         </ol>
         <img src="${imageUrl}">
     `;
@@ -41,31 +41,36 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    if(validateInput(pilot) !== "Empty" || validateInput(copilot) !== "Empty"){
-        window.alert("Invalid input detected! Please try again!")
-    } else {document.getElementByID("pilotStatus").innerHTML=`Pilot ${pilot} is ready for launch!`;
-            document.getElementByID("copilotStatus").innerHTML=`Co-Pilot ${copilot} is ready for launch!`;
+    let lStatus = document.getElementById("launchStatus")
+    if((validateInput(pilot) === '') || (validateInput(copilot === '')) || (validateInput(fuelLevel) === '') || (validateInput(cargoLevel) === '')){
+        window.alert("Please enter all information")
+        
     }
-    if(validateInput(fuelLevel) !== "Is a Number" || validateInput(cargoLevel !== "Is a Number")){
+    if((validateInput(pilot) !== "Empty") || (validateInput(copilot) !== "Empty")){
+        window.alert("Invalid input detected! Please try again!")
+    } else {document.getElementById("pilotStatus").innerHTML=`Pilot ${pilot} is ready for launch!`;
+            document.getElementById("copilotStatus").innerHTML=`Co-Pilot ${copilot} is ready for launch!`;
+    }
+    if(validateInput(fuelLevel) !== "Is a Number" || validateInput(cargoLevel) !== "Is a Number"){
         window.alert("Please check fields for valid entries!")
     }else {
         if(fuelLevel < 10000){
-            document.getElementByID("faultyItems").style.visibility="visible";
-            document.getElementByID("fuelStatus").innerHTML="Fuel level insufficient";
-            document.getElementByID("launchStatus").style.color="red";
-            document.getElementByID("launchStatus").innerHTML="Shuttle not ready for launch";
+            document.getElementById("faultyItems").style.visibility="visible";
+            document.getElementById("fuelStatus").innerHTML="Fuel level insufficient";
+            lStatus.style.color="red";
+            lStatus.innerHTML="Shuttle not ready for launch";
         } else {
-            document.getElementByID("launchStatus").style.color="green";
-            document.getElementByID("launchStatus").innerHTML="Shuttle is ready for launch";
+            lStatus.style.color="green";
+            lStatus.innerHTML="Shuttle is ready for launch";
         }
         if(cargoLevel > 10000){
-            document.getElementByID("faultyItems").style.visibility="visible";
-            document.getElementByID("cargoStatus").innerHTML="Cargo too heavy!";
-            document.getElementByID("launchStatus").style.color="red";
-            document.getElementByID("launchStatus").innerHTML="Shuttle not ready for launch";
+            list.style.visibility="visible";
+            document.getElementById("cargoStatus").innerHTML="Cargo too heavy!";
+            lStatus.style.color="red";
+            lStatus.innerHTML="Shuttle not ready for launch";
         }else {
-            document.getElementByID("launchStatus").style.color="green";
-            document.getElementByID("launchStatus").innerHTML="Shuttle is ready for launch";
+            lStatus.style.color="green";
+            lStatus.innerHTML="Shuttle is ready for launch";
         }
 
     }
@@ -77,9 +82,11 @@ async function myFetch() {
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json")
     .then( function(response) {
-       response.json()       
+        //console.log(response.json())
+       return response.json()       
     });
-    return planetsReturned;
+
+    return planetsReturned
 }
 
 function pickPlanet(planets) {
