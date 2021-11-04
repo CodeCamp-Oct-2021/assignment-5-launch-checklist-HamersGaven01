@@ -1,5 +1,7 @@
 // Write your JavaScript code here!
 document = window.document
+window = window;
+
 // const { formSubmission } = require("./scriptHelper");
 
 // const { pickPlanet } = require("./scriptHelper");
