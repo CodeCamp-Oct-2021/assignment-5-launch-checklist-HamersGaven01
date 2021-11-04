@@ -19,20 +19,20 @@ window.addEventListener("load", function() {
        addDestinationInfo(document , somePlanet.name , somePlanet.diameter, somePlanet.star, somePlanet.distance, somePlanet.moons, somePlanet.image)
    })
     // let thing = document.getElementById("testForm")
-    let form = document.getElementById("testForm");
+    let form = document.getElementById("launchForm");
     form.addEventListener("submit", function(event){
         
         let someList = document.getElementById("faultyItems")
-        let mainPilot = document.getElementById("pilotName");
-        let mPilot = mainPilot.value
+        let mainPilot = document.getElementById("pilotName")
+        
         let otherPilot = document.getElementById("copilotName")
-        let oPilot = otherPilot.value;
+        
         let levelFuel = document.getElementById("fuelLevel")
-        let lFuel = levelFuel.value;
+        
         let levelCargo = document.getElementById("cargoMass")
-        let lCargo = levelCargo.value;
+        
         event.preventDefault()
-        formSubmission(document, someList, mPilot, oPilot, lFuel, lCargo)
+        formSubmission(document, someList, mainPilot.value, otherPilot.value, levelFuel.value, levelCargo.value)
     })
 
 });
