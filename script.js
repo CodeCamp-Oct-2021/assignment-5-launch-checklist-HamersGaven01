@@ -5,7 +5,7 @@
 // const { pickPlanet } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
-
+    console.log("AddEvenListenerLoaded");
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
    let listedPlanetsResponse = myFetch()
@@ -19,21 +19,24 @@ window.addEventListener("load", function() {
        addDestinationInfo(document , somePlanet.name , somePlanet.diameter, somePlanet.star, somePlanet.distance, somePlanet.moons, somePlanet.image)
    })
     // let thing = document.getElementById("testForm")
-    let form = document.getElementById("launchForm");
+    let form = window.document.getElementById("launchForm")
     form.addEventListener("submit", function(event){
-        
+        console.log("did this hit?")
         let someList = document.getElementById("faultyItems")
+        
         let mainPilot = document.getElementById("pilotName")
         
-        let otherPilot = document.getElementById("copilotName")
+        let otherPilot = document.querySelector("input[name='copilotName']")
+        // document.getElementsByName("copilotName")
         
-        let levelFuel = document.getElementById("fuelLevel")
+        let levelFuel = document.querySelector("input[name='fuelLevel']")
         
-        let levelCargo = document.getElementById("cargoMass")
-        
-        
-        formSubmission(document, someList, mainPilot, otherPilot, levelFuel, levelCargo)
+        let levelCargo = document.querySelector("input[name='cargoMass']")
         event.preventDefault()
+        console.log("Form about to submit")
+        formSubmission(document, someList, mainPilot, otherPilot, levelFuel, levelCargo)
+        console.log("Form Got submitted")
+        // event.preventDefault()
     })
 
 });
