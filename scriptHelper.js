@@ -28,33 +28,33 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-    if (isNaN(testInput)){
+    if (typeof(testInput) === "string"){
+        return "Empty"
+    }
+    if(isNaN(testInput)){
         return "Not a Number"
     }
-    if(typeof(testInput) === "number"){
+    if(typeog(testInput) === "number"){
         return "Is a Number"
-    }
-    if(typeof(testInput) === "string"){
-        return "Empty"
     }
    
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     // let lStatus = document.getElementById("launchStatus")
-    if((validateInput(pilot) === '') || (validateInput(copilot === '')) || (validateInput(fuelLevel) === '') || (validateInput(cargoLevel) === '')){
+    if((validateInput(pilot.value) === '') || (validateInput(copilot.value === '')) || (validateInput(fuelLevel.value) === '') || (validateInput(cargoLevel) === '')){
         window.alert("Please enter all information")
         
     }
-    if((validateInput(pilot) == "Is a Number") || (validateInput(copilot) == "Is a Number")){
+    if((validateInput(pilot.value) == "Is a Number") || (validateInput(copilot.value) == "Is a Number")){
         window.alert("Invalid input detected! Please try again!")
     } else {document.getElementById("pilotStatus").innerHTML=`Pilot ${pilot} is ready for launch`;
             document.getElementById("copilotStatus").innerHTML=`Co-pilot ${copilot} is ready for launch`;
     }
-    if(validateInput(fuelLevel) !== "Is a Number" || validateInput(cargoLevel) !== "Is a Number"){
+    if(validateInput(fuelLevel.value) !== "Is a Number" || validateInput(cargoLevel.value) !== "Is a Number"){
         window.alert("Please check fields for valid entries!")
     }else {
-        if(fuelLevel < 10000){
+        if(fuelLevel.value < 10000){
             document.getElementById("faultyItems").style.visibility="visible";
             // document.getElementById("fuelStatus").innerHTML="Fuel level too low for launch";
             document.getElementById("fuelStatus").innerHTML="Fuel level too low for launch";
@@ -66,7 +66,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             document.getElementById("launchStatus").style.color="green";
             document.getElementById("launchStatus").innerHTML="Shuttle is ready for launch";
         }
-        if(cargoLevel > 10000){
+        if(cargoLevel.value > 10000){
             list.style.visibility="visible";
             document.getElementById("cargoStatus").innerHTML="Cargo mass too heavy for launch";
             lStatus.style.color="red";
