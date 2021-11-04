@@ -42,6 +42,7 @@ function validateInput(testInput) {
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     console.log("Reached FormSubmission");
+    list.style.visibility="hidden";
 
 
    
@@ -57,7 +58,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         list.style.visibility="hidden";
         
     }else {
-            list.style.visibility="hidden";
+            
             document.getElementById("pilotStatus").innerHTML=`Pilot ${pilot.value} is ready for launch`;
             document.getElementById("copilotStatus").innerHTML=`Co-pilot ${copilot.value} is ready for launch`;
             console.log("changed pilots names")
