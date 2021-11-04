@@ -28,13 +28,13 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-    if (typeof(testInput) === "string"){
+    if (testInput == ""){
         return "Empty"
     }
     if(isNaN(testInput)){
         return "Not a Number"
     }
-    if(typeog(testInput) === "number"){
+    if(!isNaN(testInput)){
         return "Is a Number"
     }
    
@@ -42,11 +42,11 @@ function validateInput(testInput) {
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     // let lStatus = document.getElementById("launchStatus")
-    if((validateInput(pilot.value) === '') || (validateInput(copilot.value === '')) || (validateInput(fuelLevel.value) === '') || (validateInput(cargoLevel) === '')){
+    if((validateInput(pilot.value) === "Empty") || (validateInput(copilot.value === "Empty")) || (validateInput(fuelLevel.value) === "Empty") || (validateInput(cargoLevel.value) === "Empty")){
         window.alert("Please enter all information")
         
     }
-    if((validateInput(pilot.value) == "Is a Number") || (validateInput(copilot.value) == "Is a Number")){
+    if((validateInput(pilot.value) === "Is a Number") || (validateInput(copilot.value) === "Is a Number")){
         window.alert("Invalid input detected! Please try again!")
     } else {document.getElementById("pilotStatus").innerHTML=`Pilot ${pilot} is ready for launch`;
             document.getElementById("copilotStatus").innerHTML=`Co-pilot ${copilot} is ready for launch`;
